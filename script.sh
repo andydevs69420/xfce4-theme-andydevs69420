@@ -10,7 +10,6 @@ if [ $session != "xfce" ]; then
 fi
 
 echo "WARNING: This script will replace current xfce4 configuration!!"
-
 echo "*****************************"
 echo "* xfce4-theme-andydevs69420 *"
 echo "*****************************"
@@ -57,7 +56,7 @@ if getent passwd $username > /dev/null 2>&1; then
 		apt-get install orage -y
 		apt-get install nomacs -y
 		apt-get install fonts-noto
-		apt-get install fonts-noto-color-emoji
+		apt-get install fonts-noto-color-emoji -y
 		apt-get install neofetch -y
 		neofetch
 		#*********** files **********
@@ -71,12 +70,12 @@ if getent passwd $username > /dev/null 2>&1; then
 		gtk-update-icon-cache -f /usr/share/icons/*
 		# fix volumeicon if running
 		echo "Updating xfce..."
+		rm -rf $confpath/xfce4
 		cp -r NewConf/* $confpath
 		#****************************
 		echo -n "restart now?(y/n): "
 		read opt
 		if [ "$opt" = "y" ] || [ "$opt" = "Y" ]; then
-			echo 
 			reboot now
 		fi
 	else
@@ -84,8 +83,8 @@ if getent passwd $username > /dev/null 2>&1; then
 		echo "exiting..."
 		exit 1
 	fi
-	echo 
-	echo "Done!"	
+	echo "Done!"
+	echo "Please reboot your device."
 	exit 1
 else
     	echo "Error: user \"$username\" does not exist."
